@@ -1,4 +1,4 @@
-# Robin2D.Examples
+# Robin2D Samples
 
 <img src="/assets/poweredby.png" width="175"></img>
 
