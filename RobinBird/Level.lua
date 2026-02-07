@@ -22,7 +22,7 @@ function Level:new(params)
     o._messages = {
         ["title"] = robin.graphics.newText(gFonts["large"], "RobinBird", { 0, 0, 0 }),
         ["game-over"] = robin.graphics.newText(gFonts["large"], "Game Over", { 0, 0, 0 }),
-        ["score"] = robin.graphics.newText(gFonts["large"], "0", { 0, 0, 0 }),
+        ["score"] = robin.graphics.newText(gFonts["xxxlarge"], "0", { 0, 0, 0 }),
     }
 
     -- Reset level to the new game state.
@@ -33,7 +33,7 @@ end
 
 function Level:_reset()
     self._score = 0
-    self._messages["score"] = robin.graphics.newText(gFonts["large"], "0", { 0, 0, 0 })
+    self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], "0", { 0, 0, 0 })
     self._state = _STATE_NEWGAME
     self._background = Background:new{
         width=self._width,
@@ -50,7 +50,7 @@ end
 
 function Level:_onChangeScore()
     self._score = self._score + 1
-    self._messages["score"] = robin.graphics.newText(gFonts["large"], tostring(self._score), { 0, 0, 0 })
+    self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], tostring(self._score), { 0, 0, 0 })
 end
 
 function Level:onInteraction()

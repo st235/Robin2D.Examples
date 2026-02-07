@@ -29,5 +29,6 @@ gFrames = {
 
 gFonts = {
     ["medium"] = robin.graphics.newFont("PixExtrusion.ttf", 32),
-    ["large"] = robin.graphics.newFont("PixExtrusion.ttf", 42),
+    ["large"] = robin.graphics.newFont("PixExtrusion.ttf", 48),
+    ["xxxlarge"] = robin.graphics.newFont("PixExtrusion.ttf", 96),
 }
