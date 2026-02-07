@@ -4,7 +4,7 @@
 ]]
 
 local _DEFAULT_SCALE <const> = 3.5
-local _DEFAULT_VERTICAL_SPEED <const> = 10.0
+local _DEFAULT_VERTICAL_SPEED <const> = 15.0
 local _DEFAULT_VERTICAL_ACCELERATION <const> = 220.0
 local _DEFAULT_JUMP_DURATION <const> = 0.3
 
@@ -34,7 +34,7 @@ function Robin:new(params)
     o._state = _DEFAULT_STATE_IDLING
 
     o._collider = Collider:new()
-    o._collider:resize(o._width - 4 * o._scale, o._height - (1+3) * o._scale)
+    o._collider:resize(o._width - 4 * o._scale, o._height - 5 * o._scale)
     o:_repositionCollider()
 
     return o
@@ -45,7 +45,7 @@ function Robin:getCollider()
 end
 
 function Robin:_repositionCollider()
-    self._collider:reposition(self._x + 2 * self._scale, self._y + 3 * self._scale)
+    self._collider:reposition(self._x + 2 * self._scale, self._y + 5 * self._scale)
 end
 
 function Robin:_getFrame()
@@ -101,11 +101,11 @@ function Robin:update(dt)
 end
 
 function Robin:draw()
+    self._collider:draw()
+
     robin.graphics.draw(gTextures["robin"], gFrames["robin"][self:_getFrame()],
         math.floor(self._x), math.floor(self._y), self:_getRotation(),
         self._scale, self._scale)
-
-    self._collider:draw()
 end
 
 -- Return the class instance.

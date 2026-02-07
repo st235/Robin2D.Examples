@@ -3,7 +3,7 @@
     Licensed under the Robin2D Non-Commercial No-Derivatives License (RB-NC-ND 1.0)
 ]]
 
-local _TEXTURE_COLLIDER_VPADDING = 2
+local _TEXTURE_COLLIDER_VPADDING = 1
 local _TEXTURE_COLLIDER_HPADDING = 4
 
 Pipe = {}

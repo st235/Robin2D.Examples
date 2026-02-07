@@ -3,9 +3,9 @@
     Licensed under the Robin2D Non-Commercial No-Derivatives License (RB-NC-ND 1.0)
 ]]
 
-local _DEFAULT_PIPE_WIDTH <const> = 70
-local _DEFAULT_PIPES_SPEED <const> = -20
-local _DEFAULT_PIPES_ACCELERATION <const> = -2
+local _DEFAULT_PIPE_WIDTH <const> = 80
+local _DEFAULT_PIPES_SPEED <const> = -30
+local _DEFAULT_PIPES_ACCELERATION <const> = -4
 
 PipesSpawner = {}
 PipesSpawner.__index = PipesSpawner
