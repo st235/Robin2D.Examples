@@ -23,7 +23,9 @@ function robin.update(dt)
 end
 
 function robin.onKeyDown(e)
-    if e:keycode() == "return" or e:keycode() == "space" then
+    local keycode <const> = e:keycode()
+
+    if keycode == "return" or keycode == "space" then
         level:onInteraction()
     end
 end
