@@ -12,32 +12,35 @@ function PipePair:new(params)
 
     o._width = params.width
     o._height = params.height
-    o._gapHeight = params.gapHeight
-
-    assert(o._height > o._gapHeight)
-
-    local pipeHeight <const> = math.floor((o._height - o._gapHeight) / 2)
-    o._pipes = {
-        -- Top Pipe.
-        Pipe:new{
-            width=o._width,
-            height=pipeHeight,
-            isFlipped=true,
-        },
-        -- Bottom Pipe.
-        Pipe:new{
-            width=o._width,
-            height=pipeHeight,
-            isFlipped=false,
-        },
-    }
+    o._pipes = {}
 
     return o
 end
 
-function PipePair:setCenterPosition(centerX, centerY)
-    self._pipes[1]:setPosition(centerX - self._width / 2, centerY - self._height / 2)
-    self._pipes[2]:setPosition(centerX - self._width / 2, centerY + self._gapHeight / 2)
+function PipePair:setGapPosition(centerX, centerY, height)
+    assert(self._height > height)
+
+    local topPipeHeight <const> = (centerY - height / 2)
+    local bottomPipeHeight <const> = self._height - (centerY + height / 2)
+
+    self._pipes = {
+        -- Top Pipe.
+        Pipe:new{
+            width=self._width,
+            height=topPipeHeight,
+            isFlipped=true,
+            x=centerX - self._width / 2,
+            y=0,
+        },
+        -- Bottom Pipe.
+        Pipe:new{
+            width=self._width,
+            height=bottomPipeHeight,
+            isFlipped=false,
+            x=centerX - self._width / 2,
+            y=centerY + height / 2,
+        },
+    }
 end
 
 function PipePair:scroll(dx)

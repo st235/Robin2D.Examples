@@ -64,10 +64,11 @@ function PipesSpawner:_spawn()
     local pair <const> = PipePair:new{
         width=_DEFAULT_PIPE_WIDTH,
         height=self._height,
-        gapHeight=self:_getGapHeight(),
     }
 
-    pair:setCenterPosition(self._width + _DEFAULT_PIPE_WIDTH / 2, self._height / 2)
+    local gapHeight <const> = self:_getGapHeight()
+    local gapCenter <const> = math.random(50 + math.floor(gapHeight / 2), self._height - 50 - math.floor(gapHeight / 2))
+    pair:setGapPosition(self._width + _DEFAULT_PIPE_WIDTH / 2, gapCenter, gapHeight)
 
     table.insert(self._pairsToTheRight, pair)
 end
