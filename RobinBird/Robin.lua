@@ -77,6 +77,7 @@ function Robin:jump()
         return
     end
 
+    gSounds["flap"]:play()
     self._speed = -100
     self._state = _DEFAULT_STATE_FLYING
     self._flyingTimer = _DEFAULT_JUMP_DURATION

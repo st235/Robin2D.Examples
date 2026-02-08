@@ -51,16 +51,19 @@ end
 function Level:_onChangeScore()
     self._score = self._score + 1
     self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], tostring(self._score), { 0, 0, 0 })
+    gSounds["coin"]:play()
 end
 
 function Level:onInteraction()
     if self._state == _STATE_NEWGAME then
         self._state = _STATE_GAME
+        gSounds["bloop"]:play()
         return
     end
 
     if self._state == _STATE_GAMEOVER then
         self:_reset()
+        gSounds["bloop"]:play()
         return
     end
 
@@ -78,6 +81,7 @@ function Level:update(dt)
 
     if self._pipesSpawner:collides(self._robin:getCollider()) then
         self._state = _STATE_GAMEOVER
+        gSounds["kick"]:play()
     end
 end
 

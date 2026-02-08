@@ -32,3 +32,17 @@ gFonts = {
     ["large"] = robin.graphics.newFont("PixExtrusion.ttf", 48),
     ["xxxlarge"] = robin.graphics.newFont("PixExtrusion.ttf", 96),
 }
+
+gSounds = {
+    ["coin"] = robin.audio.newEffect("coin.mp3"),
+    ["flap"] = robin.audio.newEffect("flap.mp3"),
+    ["bloop"] = robin.audio.newEffect("bloop.mp3"),
+    ["kick"] = robin.audio.newEffect("kick.mp3"),
+}
+
+-- Global volume for the effects:
+-- values below should not be altered.
+gSounds["coin"]:setVolume(30)
+gSounds["flap"]:setVolume(10)
+gSounds["bloop"]:setVolume(15)
+gSounds["kick"]:setVolume(20)
