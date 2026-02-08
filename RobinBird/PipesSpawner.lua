@@ -36,7 +36,7 @@ function PipesSpawner:_getNextSpawnThreshold()
 end
 
 function PipesSpawner:_getGapHeight()
-    return math.random(80, 200)
+    return math.random(100, 200)
 end
 
 function PipesSpawner:collides(collider)

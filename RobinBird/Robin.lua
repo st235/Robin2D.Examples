@@ -5,8 +5,9 @@
 
 local _DEFAULT_SCALE <const> = 3.5
 local _DEFAULT_VERTICAL_SPEED <const> = 15.0
-local _DEFAULT_VERTICAL_ACCELERATION <const> = 220.0
-local _DEFAULT_JUMP_DURATION <const> = 0.3
+local _DEFAULT_JUMP_VERTICAL_SPEED <const> = -250.0
+local _DEFAULT_VERTICAL_ACCELERATION <const> = 700.0
+local _DEFAULT_JUMP_DURATION <const> = 0.25
 
 local _DEFAULT_STATE_IDLING = "idling"
 local _DEFAULT_STATE_FALLING = "falling"
@@ -78,7 +79,7 @@ function Robin:jump()
     end
 
     gSounds["flap"]:play()
-    self._speed = -100
+    self._speed = _DEFAULT_JUMP_VERTICAL_SPEED
     self._state = _DEFAULT_STATE_FLYING
     self._flyingTimer = _DEFAULT_JUMP_DURATION
 end
