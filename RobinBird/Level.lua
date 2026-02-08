@@ -20,9 +20,9 @@ function Level:new(params)
     o._height = params.height
 
     o._messages = {
-        ["title"] = robin.graphics.newText(gFonts["large"], "RobinBird", { 0, 0, 0 }),
-        ["game-over"] = robin.graphics.newText(gFonts["large"], "Game Over", { 0, 0, 0 }),
-        ["score"] = robin.graphics.newText(gFonts["xxxlarge"], "0", { 0, 0, 0 }),
+        ["title"] = robin.graphics.newText(gFonts["large"], "RobinBird", { 255, 255, 255 }),
+        ["game-over"] = robin.graphics.newText(gFonts["large"], "Game Over", { 255, 255, 255 }),
+        ["score"] = robin.graphics.newText(gFonts["xxxlarge"], "0", { 255, 255, 255 }),
     }
 
     -- Reset level to the new game state.
@@ -33,7 +33,7 @@ end
 
 function Level:_reset()
     self._score = 0
-    self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], "0", { 0, 0, 0 })
+    self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], "0", { 255, 255, 255 })
     self._state = _STATE_NEWGAME
     self._background = Background:new{
         width=self._width,
@@ -50,7 +50,7 @@ end
 
 function Level:_onChangeScore()
     self._score = self._score + 1
-    self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], tostring(self._score), { 0, 0, 0 })
+    self._messages["score"] = robin.graphics.newText(gFonts["xxxlarge"], tostring(self._score), { 255, 255, 255 })
     gSounds["coin"]:play()
 end
 
@@ -68,6 +68,34 @@ function Level:onInteraction()
     end
 
     self._robin:jump()
+end
+
+function Level:_drawTextWithShadow(texture, atCenterX, atCenterY)
+    local width <const> = texture:width()
+    local height <const> = texture:height()
+
+    local firstShadowOffset = 4
+    local secondShadowOffset = 8
+
+    robin.graphics.setColor(210, 56, 5)
+
+    robin.graphics.draw(texture,
+        math.floor(atCenterX - width / 2) + 2,
+        math.floor(atCenterY - height / 2) + secondShadowOffset)
+
+    robin.graphics.setColor(238, 91, 10)
+
+    robin.graphics.draw(texture,
+        math.floor(atCenterX - width / 2) + 1,
+        math.floor(atCenterY - height / 2) + firstShadowOffset)
+
+    robin.graphics.setColor(11, 11, 11)
+
+    robin.graphics.draw(texture,
+        math.floor(atCenterX - width / 2),
+        math.floor(atCenterY - height / 2))
+
+    robin.graphics.setColor(255, 255, 255)
 end
 
 function Level:update(dt)
@@ -92,21 +120,18 @@ function Level:draw()
     self._robin:draw()
 
     if self._state == _STATE_NEWGAME then
-        robin.graphics.draw(self._messages["title"],
-            math.floor(self._x + (self._width - self._messages["title"]:width()) / 2),
-            math.floor(self._y + (self._height - self._messages["title"]:height()) / 2))
+        self:_drawTextWithShadow(self._messages["title"],
+            self._x + self._width / 2, self._y + self._height / 2)
     end
 
     if self._state == _STATE_GAMEOVER then
-        robin.graphics.draw(self._messages["game-over"],
-            math.floor(self._x + (self._width - self._messages["game-over"]:width()) / 2),
-            math.floor(self._y + (self._height - self._messages["game-over"]:height()) / 2))
+        self:_drawTextWithShadow(self._messages["game-over"],
+            self._x + self._width / 2, self._y + self._height / 2)
     end
 
     if self._state == _STATE_GAME then
-        robin.graphics.draw(self._messages["score"],
-            math.floor(self._x + (self._width - self._messages["score"]:width()) / 2),
-            math.floor(self._y + 50))
+        self:_drawTextWithShadow(self._messages["score"],
+            self._x + self._width / 2, self._y + 100)
     end
 end
 

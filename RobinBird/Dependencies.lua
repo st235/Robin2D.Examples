@@ -28,9 +28,9 @@ gFrames = {
 }
 
 gFonts = {
-    ["medium"] = robin.graphics.newFont("PixExtrusion.ttf", 32),
-    ["large"] = robin.graphics.newFont("PixExtrusion.ttf", 48),
-    ["xxxlarge"] = robin.graphics.newFont("PixExtrusion.ttf", 96),
+    ["medium"] = robin.graphics.newFont("leapfont-bold.ttf", 32),
+    ["large"] = robin.graphics.newFont("leapfont-bold.ttf", 52),
+    ["xxxlarge"] = robin.graphics.newFont("leapfont-bold.ttf", 96),
 }
 
 gSounds = {
