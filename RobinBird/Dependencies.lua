@@ -11,6 +11,7 @@ Pipe = require("Pipe")
 PipePair = require("PipePair")
 PipesSpawner = require("PipesSpawner")
 Level = require("Level")
+VirtualDisplay = require("VirtualDisplay")
 
 gTextures = {
     ["background"] = robin.graphics.loadTexture("background.jpeg"),
