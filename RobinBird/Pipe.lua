@@ -78,13 +78,15 @@ function Pipe:draw()
     -- Rotated pipe segment posses exactly the same dimensions.
     local pipeMiddleHeight <const> = gTextures["pipe-middle"]:height() * self._scale
 
+    local flipMode = "none"
     local startY = self._y
     if self._isFlipped then
+        flipMode = "horizontal"
         startY = self._y + self._height - topSegmentHeight
     end
 
     robin.graphics.draw(gTextures["pipe-top"], math.floor(self._x), math.floor(startY),
-        self:_getSegmentRotation(), self._scale, self._scale)
+        self:_getSegmentRotation(), self._scale, self._scale, nil, nil, flipMode)
 
     local currentY = startY
     if self._isFlipped then
@@ -93,7 +95,7 @@ function Pipe:draw()
             currentY = currentY - pipeMiddleHeight
             robin.graphics.draw(gTextures["pipe-middle-rotated"],
                 math.floor(self._x), math.floor(currentY),
-                0, self._scale, self._scale)
+                0, self._scale, self._scale, nil, nil, flipMode)
         end
     else
         -- Regular Pipe.
